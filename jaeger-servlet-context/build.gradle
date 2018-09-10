@@ -1,0 +1,8 @@
+description = 'Convenience module to be used by instrumented applications'
+
+dependencies {
+    compile group: 'io.jaegertracing', name: 'jaeger-client', version: jaegerVersion
+    compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: servletVersion
+
+    testCompile group: 'junit', name: 'junit', version: junitVersion
+}
