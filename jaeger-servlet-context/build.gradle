@@ -1,4 +1,4 @@
-description = 'Convenience module to be used by instrumented applications'
+description = 'ServletContextListener implementation for creating the Jaeger tracer'
 
 dependencies {
     compile group: 'io.jaegertracing', name: 'jaeger-client', version: jaegerVersion
@@ -6,3 +6,4 @@ dependencies {
 
     testCompile group: 'junit', name: 'junit', version: junitVersion
 }
+

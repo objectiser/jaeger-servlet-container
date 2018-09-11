@@ -14,13 +14,11 @@
 
 package io.jaegertracing.servletcontainer;
 
-import io.jaegertracing.Configuration.ReporterConfiguration;
-import io.jaegertracing.Configuration.SamplerConfiguration;
-import io.jaegertracing.internal.JaegerTracer;
-import io.opentracing.Tracer;
-
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+
+import io.jaegertracing.internal.JaegerTracer;
+import io.opentracing.Tracer;
 
 public class JaegerServletContextListener implements ServletContextListener {
 
@@ -29,8 +27,6 @@ public class JaegerServletContextListener implements ServletContextListener {
   @Override
   public void contextInitialized(ServletContextEvent sce) {
     tracer = io.jaegertracing.Configuration.fromEnv(sce.getServletContext().getServletContextName())
-            .withReporter(ReporterConfiguration.fromEnv().withLogSpans(true))
-            .withSampler(SamplerConfiguration.fromEnv().withType("const").withParam(1))
             .getTracer();
     sce.getServletContext().setAttribute(Tracer.class.getName(), tracer);
   }

@@ -1,0 +1,29 @@
+description = 'Distribution for the Jaeger servlet container support'
+
+apply plugin: 'distribution'
+
+dependencies {
+    compile project(':jaeger-servlet-context')
+
+    compile group: 'io.opentracing.contrib', name: 'opentracing-web-servlet-filter', version: javaWebServletFilterVersion
+}
+
+distributions {
+    main {
+        contents {
+            into('/') {
+                from(project.configurations.runtime)
+            } 
+        }
+    }
+}
+
+distTar {
+  compression = Compression.GZIP
+  extension = 'tar.gz'
+  classifier = 'dist'  // Appends a suffix to the file name
+}
+
+distZip {
+  classifier = 'dist'
+}

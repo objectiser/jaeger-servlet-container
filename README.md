@@ -2,6 +2,84 @@
 
 # Jaeger's Servlet Container Support
 
+This project provides servlet container support for using OpenTracing and Jaeger from within your webapps.
+
+A `ServletContainerListener` is used to manage the lifecycle of the Jaeger tracer used within the webapp.
+The Jaeger tracer configuration currently is obtained from the enviroment, although the service name is
+obtained from the servlet context's display name. Therefore by default the tracer will attempt to communicate
+with a local Jaeger agent.
+
+The webapp instrumentation is provided by the
+[Java web servlet filter](https://github.com/opentracing-contrib/java-web-servlet-filter) instrumentation library.
+
+There are two ways in which your container can make use of OpenTracing and Jaeger:
+
+## Deploy within your webapp
+
+* Add the following dependencies to your webapp:
+
+```
+    <dependency>
+      <groupId>io.jaegertracing</groupId>
+      <artifactId>jaeger-servlet-context</artifactId>
+      <version>${jaeger-servlet-context.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.opentracing.contrib</groupId>
+      <artifactId>opentracing-web-servlet-filter</artifactId>
+      <version>${opentracing-web-servlet-filter.version}</version>
+    </dependency>
+```
+
+* Add the servlet context listener and filter to `web.xml`
+
+```
+	<listener>
+		<listener-class>io.jaegertracing.servletcontainer.JaegerServletContextListener</listener-class>
+	</listener>
+
+	<filter>
+		<filter-name>TracingFilter</filter-name>
+		<filter-class>io.opentracing.contrib.web.servlet.filter.TracingFilter</filter-class>
+	</filter>
+```
+
+* Add any appropriate filter mappings to `web.xml`, e.g.
+
+```
+	<filter-mapping>
+		<filter-name>TracingFilter</filter-name>
+		<servlet-name>MyServlet</servlet-name>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+```
+
+
+## Deploy within your container
+
+### Tomcat
+
+* Unpack the distribution zip/tar in the Tomcat `lib` folder
+
+* Add the service context listener and filter entries (shown above) to the `conf/web.xml` file,
+under the `web-app` node
+
+* As in the previous section, add a filter mapping(s) to any webapp `web.xml` that needs to be traced
+
+### Jetty
+
+* Unpack the distribution zip/tar in the Tomcat `lib/ext` folder
+
+* Add the service context listener and filter entries (shown above) to the `etc/webdefault.xml` file,
+under the `web-app` node
+
+* As in the previous section, add a filter mapping(s) to any webapp `web.xml` that needs to be traced
+
+
+# Contributing and Developing
+
+Please see [CONTRIBUTING.md](CONTRIBUTING.md).
+
 
 ## License
   
