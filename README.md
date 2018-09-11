@@ -4,8 +4,8 @@
 
 This project provides servlet container support for using OpenTracing and Jaeger from within your webapps.
 
-A `ServletContainerListener` is used to manage the lifecycle of the Jaeger tracer used within the webapp.
-The Jaeger tracer configuration currently is obtained from the enviroment, although the service name is
+A `ServletContextListener` is used to manage the lifecycle of the Jaeger tracer used within the webapp.
+The Jaeger tracer configuration currently is obtained from the [enviroment](https://github.com/jaegertracing/jaeger-client-java/tree/master/jaeger-core#configuration-via-environment), although the service name is
 obtained from the servlet context's display name. Therefore by default the tracer will attempt to communicate
 with a local Jaeger agent.
 
@@ -61,7 +61,7 @@ There are two ways in which your container can make use of OpenTracing and Jaege
 
 * Unpack the distribution zip/tar in the Tomcat `lib` folder
 
-* Add the service context listener and filter entries (shown above) to the `conf/web.xml` file,
+* Add the servlet context listener and filter entries (shown above) to the `conf/web.xml` file,
 under the `web-app` node
 
 * As in the previous section, add a filter mapping(s) to any webapp `web.xml` that needs to be traced
@@ -70,7 +70,7 @@ under the `web-app` node
 
 * Unpack the distribution zip/tar in the Tomcat `lib/ext` folder
 
-* Add the service context listener and filter entries (shown above) to the `etc/webdefault.xml` file,
+* Add the servlet context listener and filter entries (shown above) to the `etc/webdefault.xml` file,
 under the `web-app` node
 
 * As in the previous section, add a filter mapping(s) to any webapp `web.xml` that needs to be traced
