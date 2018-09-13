@@ -7,7 +7,7 @@ This project provides servlet container support for using OpenTracing and Jaeger
 A `ServletContextListener` is used to manage the lifecycle of the Jaeger tracer used within the webapp.
 The Jaeger tracer configuration currently is obtained from the [enviroment](https://github.com/jaegertracing/jaeger-client-java/tree/master/jaeger-core#configuration-via-environment), although the service name is
 obtained from the servlet context's display name. Therefore by default the tracer will attempt to communicate
-with a local Jaeger agent.
+with a local Jaeger agent. For information on running Jaeger, please see the [getting started](https://www.jaegertracing.io/docs/latest/getting-started/) guide.
 
 The webapp instrumentation is provided by the
 [Java web servlet filter](https://github.com/opentracing-contrib/java-web-servlet-filter) instrumentation library.
