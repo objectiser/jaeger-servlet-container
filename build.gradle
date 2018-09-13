@@ -17,7 +17,7 @@ plugins {
 ext.developmentVersion = getProperty('developmentVersion','0.1.0-SNAPSHOT')
 
 ext.jaegerVersion = getProperty('jaegerVersion','0.31.0')
-ext.javaWebServletFilterVersion = getProperty('javaWebServletFilterVersion','0.1.2-SNAPSHOT')
+ext.javaWebServletFilterVersion = getProperty('javaWebServletFilterVersion','0.2.0')
 ext.servletVersion = getProperty('servletVersion','3.1.0')
 
 ext.junitVersion = '4.12'

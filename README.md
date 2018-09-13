@@ -66,6 +66,13 @@ under the `web-app` node
 
 * As in the previous section, add a filter mapping(s) to any webapp `web.xml` that needs to be traced
 
+* Configure any required Jaeger [enviroment variables](https://github.com/jaegertracing/jaeger-client-java/tree/master/jaeger-core#configuration-via-environment) in the `bin/setenv.sh` file, e.g. to use the const sampler to report all spans:
+
+```
+export JAEGER_SAMPLER_TYPE=const
+export JAEGER_SAMPLER_PARAM=1
+```
+
 ### Jetty
 
 * Unpack the distribution zip/tar in the Tomcat `lib/ext` folder
